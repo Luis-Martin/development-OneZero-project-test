@@ -1,0 +1,33 @@
+{
+  "name": "projecttest",
+  "version": "1.0.0",
+  "description": "Project to test the hability of the coop to solve basic problems",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=dev node src/index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/developmentOneZero/fileteste.git"
+  },
+  "keywords": [
+    "test",
+    "coop",
+    "file",
+    "changes"
+  ],
+  "author": "jose.raupp@devoz.com.br <Jose Raupp>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/developmentOneZero/fileteste#readme",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-router": "^9.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-json-schema": "^1.5.1",
+    "mocha": "^8.1.3"
+  }
+}
