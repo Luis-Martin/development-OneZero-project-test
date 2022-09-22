@@ -47,7 +47,7 @@ describe('Application tests whit 0 users in the initial state', () => {
   it('should create user raupp', (done) => {
     chai
       .request(app)
-      .post('/user')
+      .post('/users')
       .send({ name: 'raupp', email: 'jose.raupp@devoz.com.br', age: 35 })
       .end((err, res) => {
         expect(err).to.be.null
@@ -64,7 +64,7 @@ describe('tests with many useres in the initial state', () => {
     usersList.forEach(user => {
       chai
         .request(app)
-        .post('/user')
+        .post('/users')
         .send(user)
         .end()
     })
@@ -73,7 +73,7 @@ describe('tests with many useres in the initial state', () => {
   it('the user "naoExiste" does not exist in the system', (done) => {
     chai
       .request(app)
-      .get('/user/naoExiste')
+      .get('/users/naoExiste')
       .end((err, res) => {
         expect(err).to.be.null // error was handled and only one message was sent
         expect(res.body.message).to.be.equal('User not found') // possibly wrong way to check error message
@@ -85,7 +85,7 @@ describe('tests with many useres in the initial state', () => {
   it('the user raupp exists and is valid', (done) => {
     chai
       .request(app)
-      .get('/user/raupp')
+      .get('/users/raupp')
       .end((err, res) => {
         expect(err).to.be.null
         expect(res).to.have.status(200)
@@ -97,7 +97,7 @@ describe('tests with many useres in the initial state', () => {
   it('should delete user raupp', (done) => {
     chai
       .request(app)
-      .delete('/user/raupp')
+      .delete('/users/raupp')
       .end((err, res) => {
         expect(err).to.be.null
         expect(res).to.have.status(200)
@@ -109,7 +109,7 @@ describe('tests with many useres in the initial state', () => {
   it('the user raupp should no longer exist in the system', (done) => {
     chai
       .request(app)
-      .get('/user/raupp')
+      .get('/users/raupp')
       .end((err, res) => {
         expect(err).to.be.null
         expect(res).to.have.status(404)
@@ -137,7 +137,7 @@ describe('tests with many useres in the initial state', () => {
 
     chai
       .request(app)
-      .put(`/user/${name}`)
+      .put(`/users/${name}`)
       .send(infoToUpdate)
       .end((err, res) => {
         expect(err).to.be.null
@@ -146,7 +146,7 @@ describe('tests with many useres in the initial state', () => {
 
     chai
       .request(app)
-      .get(`/user/${name}`)
+      .get(`/users/${name}`)
       .end((err, res) => {
         expect(err).to.be.null
         expect(res).to.have.status(200)

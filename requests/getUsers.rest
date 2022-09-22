@@ -3,7 +3,7 @@
 GET http://localhost:3000/users HTTP/1.1
 
 ###
-GET http://localhost:3000/user/martin HTTP/1.1
+GET http://localhost:3000/users/martin HTTP/1.1
 
 ###
-GET http://localhost:3000/user/not HTTP/1.1
+GET http://localhost:3000/users/not HTTP/1.1
