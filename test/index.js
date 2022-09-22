@@ -47,7 +47,7 @@ describe('Application tests', () => {
     chai
       .request(app)
       .post('/user')
-      .send({ nome: 'raupp', email: 'jose.raupp@devoz.com.br', idade: 35 })
+      .send({ name: 'raupp', email: 'jose.raupp@devoz.com.br', age: 35 })
       .end(function (err, res) {
         expect(err).to.be.null
         expect(res).to.have.status(201)

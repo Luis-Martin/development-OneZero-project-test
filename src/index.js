@@ -1,17 +1,39 @@
 const Koa = require('koa')
 const Router = require('koa-router')
-
+const bodyParser = require('koa-bodyparser')
 const app = new Koa()
 const router = new Router()
+const { requestLogger } = require('../utils/middleware')
+
+// Middlewarre
+app.use(bodyParser())
+if (process.env.NODE_ENV === 'dev') app.use(requestLogger)
+
+const Users = []
 
 router.get('/', async (ctx) => {
   ctx.body = `Seu servidor esta rodando em http://localhost:${PORT}`
 })
 
 // Routes must be in separate files, /src/controllers/userController.js for example
+
+// HTTP requests
 router.get('/users', async (ctx) => {
+  ctx.body = { total: Users.length, count: 0, rows: Users }
   ctx.status = 200
-  ctx.body = { total: 0, count: 0, rows: [] }
+})
+
+router.post('/user', async (ctx) => {
+  const newUser = ctx.request.body
+
+  if (newUser || (newUser.age > 18)) {
+    Users.push(newUser)
+    ctx.body = newUser
+    ctx.response.status = 201
+  } else {
+    ctx.body = 'Bad request'
+    ctx.response.status = 400
+  }
 })
 
 app
