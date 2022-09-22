@@ -36,7 +36,7 @@ router.post('/user', async (ctx) => {
   }
 })
 
-router.get('/user/:name', async (ctx, next) => {
+router.get('/user/:name', async (ctx) => {
   const name = ctx.params.name
   const user = Users.find(user => user.name === name)
 
@@ -57,6 +57,22 @@ router.delete('/user/:name', async (ctx) => {
     ctx.body = user
     Users = Users.filter(user => user.name !== name)
     ctx.response.status = 200
+  } else {
+    ctx.response.status = 404
+  }
+})
+
+router.put('/user/:name', async (ctx) => {
+  const name = ctx.params.name
+  const user = Users.find(user => user.name === name)
+
+  const updateInfo = ctx.request.body
+  const updatedUser = { ...user, ...updateInfo }
+
+  if (user) {
+    ctx.response.message = 'Updated'
+    Users = Users.map(user => (user.name === name) ? updatedUser : user)
+    ctx.response.status = 204
   } else {
     ctx.response.status = 404
   }

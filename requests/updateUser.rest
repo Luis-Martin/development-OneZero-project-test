@@ -1,0 +1,9 @@
+# Used "REST Client" extension of VSC
+###
+PUT http://localhost:3000/user/martin HTTP/1.1
+Content-type: application/json
+
+{ 
+  "email": "luis.martin@example.com",
+  "age": 55
+}
