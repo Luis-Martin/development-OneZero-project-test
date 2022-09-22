@@ -1,0 +1,20 @@
+# Used "REST Client" extension of VSC
+###
+POST http://localhost:3000/user HTTP/1.1
+Content-type: application/json
+
+{ 
+  "name": "raupp",
+  "email": "jose.raupp@devoz.com.br",
+  "age": 35 
+}
+
+###
+POST http://localhost:3000/user HTTP/1.1
+Content-type: application/json
+
+{ 
+  "name": "martin",
+  "email": "martin@example.com",
+  "age": 23 
+}

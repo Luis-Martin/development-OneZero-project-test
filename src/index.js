@@ -5,7 +5,7 @@ const app = new Koa()
 const router = new Router()
 const { requestLogger } = require('../utils/middleware')
 
-// Middlewarre
+// Middlewares
 app.use(bodyParser())
 if (process.env.NODE_ENV === 'dev') app.use(requestLogger)
 
@@ -33,6 +33,19 @@ router.post('/user', async (ctx) => {
   } else {
     ctx.body = 'Bad request'
     ctx.response.status = 400
+  }
+})
+
+router.get('/user/:name', async (ctx, next) => {
+  const name = ctx.params.name
+  const user = Users.find(user => user.name === name)
+
+  if (user) {
+    ctx.body = user
+    ctx.response.status = 200
+  } else {
+    ctx.body = { message: 'User not found' }
+    ctx.response.status = 404
   }
 })
 

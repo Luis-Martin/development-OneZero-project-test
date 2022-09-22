@@ -56,14 +56,14 @@ describe('Application tests', () => {
   })
   // ...add at least 5 more users. if you add a minor user, it should give an error. Ps: do not create the user does not exist
 
-  it('the user "naoExiste" exist does not exist in the system', function (done) {
+  it('the user "naoExiste" does not exist in the system', function (done) {
     chai
       .request(app)
       .get('/user/naoExiste')
       .end(function (err, res) {
-        expect(err.response.body.error).to.be.equal('User not found') // possibly wrong way to check error message
+        expect(err).to.be.null // error was handled and only one message was sent
+        expect(res.body.message).to.be.equal('User not found') // possibly wrong way to check error message
         expect(res).to.have.status(404)
-        expect(res.body).to.be.jsonSchema(userSchema)
         done()
       })
   })
@@ -98,8 +98,8 @@ describe('Application tests', () => {
       .get('/user/raupp')
       .end(function (err, res) {
         expect(err).to.be.null
-        expect(res).to.have.status(200)
-        expect(res.body).to.be.jsonSchema(userSchema)
+        expect(res).to.have.status(404)
+        expect(res.body).to.not.be.jsonSchema(userSchema)
         done()
       })
   })

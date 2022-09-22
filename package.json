@@ -4,7 +4,7 @@
   "description": "Project to test the hability of the coop to solve basic problems",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=dev node src/index.js",
+    "dev": "NODE_ENV=dev nodemon src/index.js",
     "test": "NODE_ENV=test mocha",
     "lint": "eslint ."
   },
