@@ -8,19 +8,6 @@ router.get('/users', async (ctx) => {
   ctx.status = 200
 })
 
-router.post('/users', async (ctx) => {
-  const newUser = ctx.request.body
-
-  if (newUser || (newUser.age > 18)) {
-    Users.push(newUser)
-    ctx.body = newUser
-    ctx.response.status = 201
-  } else {
-    ctx.body = 'Bad request'
-    ctx.response.status = 400
-  }
-})
-
 router.get('/users/:name', async (ctx) => {
   const name = ctx.params.name
   const user = Users.find(user => user.name === name)
@@ -31,6 +18,19 @@ router.get('/users/:name', async (ctx) => {
   } else {
     ctx.body = { message: 'User not found' }
     ctx.response.status = 404
+  }
+})
+
+router.post('/users', async (ctx) => {
+  const newUser = ctx.request.body
+
+  if (newUser || (newUser.age > 18)) {
+    Users.push(newUser)
+    ctx.body = newUser
+    ctx.response.status = 201
+  } else {
+    ctx.body = 'Bad request'
+    ctx.response.status = 400
   }
 })
 

@@ -9,7 +9,7 @@ app.use(bodyParser())
 if (process.env.NODE_ENV === 'dev') app.use(requestLogger)
 
 userRouter.get('/', async (ctx) => {
-  ctx.body = `Seu servidor esta rodando em http://localhost:${PORT}`
+  ctx.body = 'Home'
 })
 
 app
@@ -17,6 +17,8 @@ app
   .use(userRouter.allowedMethods())
 
 const PORT = process.env.PORT || 3000
-const server = app.listen(PORT)
+const server = app.listen(PORT, () => {
+  console.log(`Server running in --> http://localhost:${PORT}`)
+})
 
 module.exports = server

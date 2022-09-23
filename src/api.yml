@@ -1,0 +1,25 @@
+version: api/v1
+
+services:
+  name: backend
+  request:
+    - get:
+        urls: ['/users','/users/:name']
+        body: null
+    - post:
+        urls: ['/users']
+        body: {
+          name: String,
+          email: Sting,
+          age: Integer 
+        }
+    - put:
+        urls: ['/users/:name']
+        body: {
+          name: String,
+          email: Sting,
+          age: Integer 
+        }
+    - delete:
+        urls: ['/users/:name']
+        body: null
